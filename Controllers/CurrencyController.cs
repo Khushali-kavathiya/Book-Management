@@ -44,5 +44,28 @@ namespace BookManagement.Controllers
             var result = await _appDbContext.Currencies.FirstOrDefaultAsync(x => x.Title == title);   // if we check condition with FirstOrDefultAsync give more performance than Where
             return Ok(result);
         }
+
+        // [HttpGet("GetCurrencyByTitleOrDescriptions/{title}")]
+        // public async Task<IActionResult> GetCurrencyByTitleOrDescriptions([FromRoute] string title, [FromQuery] string? Description)
+        // {
+        //     var result = await _appDbContext.Currencies
+        //                         .FirstOrDefaultAsync(x =>
+        //                         x.Title == title
+        //                         && (string.IsNullOrEmpty(Description) || x.Description == Description)
+        //                          );   
+        //     return Ok(result);
+        // }
+
+        [HttpGet("GetCurrencies/{name}")]
+
+        public async Task<IActionResult> GetRecord([FromRoute] string name, [FromQuery] string? description)
+        {
+            var result = await _appDbContext.Currencies
+                .Where(x => x.Title == name
+                && (string.IsNullOrEmpty(description) || x.Description == description)
+                ).ToListAsync();
+                return Ok(result);
+        }
+
     }
 }
