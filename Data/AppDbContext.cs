@@ -8,7 +8,7 @@ namespace BookManagement.Data
             : base(options)
         {
         }
-        
+        public DbSet<Book> Books { get; set; }
+        public DbSet<Language> Languages { get; set; }
     }
-
 }
