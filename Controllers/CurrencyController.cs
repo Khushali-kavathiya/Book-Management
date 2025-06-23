@@ -1,5 +1,6 @@
 using BookManagement.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookManagement.Controllers
 {
@@ -14,11 +15,13 @@ namespace BookManagement.Controllers
         }
         
         [HttpGet("GetAllCurrencies")]
-        public IActionResult GetAllCurrencies()
+        public async Task<IActionResult> GetAllCurrencies()
         {
             //var result = _appDbContext.Currencies.ToList();
-            var result = from currencies in _appDbContext.Currencies
-                          select currencies;     
+            // var result = (from currencies in _appDbContext.Currencies
+            //               select currencies).ToList();     // If you not write ToList() some time error will occur
+
+            var result = await _appDbContext.Currencies.ToListAsync();
             return Ok(result);
         }
     }
