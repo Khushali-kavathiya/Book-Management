@@ -3,6 +3,7 @@ using System;
 using BookManagement.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Book_Management.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250623060159_Add-BookPrice-AND-currencyTable")]
+    partial class AddBookPriceANDcurrencyTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -143,32 +146,6 @@ namespace Book_Management.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Languages");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "English Language",
-                            Title = "English"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Hindi Language",
-                            Title = "Hindi"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Spanish Language",
-                            Title = "Spanish"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "French Language",
-                            Title = "French"
-                        });
                 });
 
             modelBuilder.Entity("BookManagement.Data.Book", b =>
