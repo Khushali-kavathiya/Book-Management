@@ -1,7 +1,6 @@
 using BookManagement.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using BookManagement.Models;
 
 namespace BookManagement.Controllers
 {
@@ -17,7 +16,6 @@ namespace BookManagement.Controllers
         }
 
         [HttpPost("AddBook")]
-
         public async Task<IActionResult> AddBook([FromBody] Book book)
         {
             _appDbContext.Books.Add(book);
@@ -25,5 +23,15 @@ namespace BookManagement.Controllers
 
             return Ok(book);
         }
+
+        [HttpPost("BulkInsertData")]
+
+        public async Task<IActionResult> InsertBook([FromBody] List<Book> books)
+        {
+            _appDbContext.Books.AddRange(books);
+            await _appDbContext.SaveChangesAsync();
+
+            return Ok(books);
+        } 
     }
 }
