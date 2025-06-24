@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QeTaoWy/+jqGqG0MZ4Jz28waccTtbPhevmECoWkiDZKp/r9QjWZ6/kvs0faFZ7uIUWehAf6JZnlI50QW8hLFEA==",
+  "dgSpecHash": "B4v+4pf3qUk=",
   "success": true,
   "projectFilePath": "/Users/khushalikavathiya/Projects/Book-Management/Book-Management.csproj",
   "expectedPackageFiles": [
@@ -39,8 +39,10 @@
     {
       "code": "NU1603",
       "level": "Warning",
+      "message": "Book-Management depends on Npgsql.EntityFrameworkCore.PostgreSQL (>= 7.0.5) but Npgsql.EntityFrameworkCore.PostgreSQL 7.0.5 was not found. Npgsql.EntityFrameworkCore.PostgreSQL 7.0.11 was resolved instead.",
+      "projectPath": "/Users/khushalikavathiya/Projects/Book-Management/Book-Management.csproj",
       "warningLevel": 1,
-      "message": "Book-Management depends on Npgsql.EntityFrameworkCore.PostgreSQL (>= 7.0.5) but Npgsql.EntityFrameworkCore.PostgreSQL 7.0.5 was not found. An approximate best match of Npgsql.EntityFrameworkCore.PostgreSQL 7.0.11 was resolved.",
+      "filePath": "/Users/khushalikavathiya/Projects/Book-Management/Book-Management.csproj",
       "libraryId": "Npgsql.EntityFrameworkCore.PostgreSQL",
       "targetGraphs": [
         "net7.0"

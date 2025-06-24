@@ -1,11 +1,1 @@
-{
-  "Version": 1,
-  "Hash": "VRLKK99rM7VYDDkTcwa6224g8pTpqMQrswOKjRdG0D8=",
-  "Source": "Book-Management",
-  "BasePath": "_content/Book-Management",
-  "Mode": "Default",
-  "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
-}
+{"Version":1,"Hash":"Nlz/CMlh7NJlX6io2Uz60kXZTWR5+Rg+Gxi6U9wLegs=","Source":"Book-Management","BasePath":"_content/Book-Management","Mode":"Default","ManifestType":"Build","ReferencedProjectsConfiguration":[],"DiscoveryPatterns":[],"Assets":[],"Endpoints":[]}
