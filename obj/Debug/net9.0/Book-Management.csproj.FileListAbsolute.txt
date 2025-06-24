@@ -1,0 +1,6 @@
+/Users/khushalikavathiya/Projects/Book-Management/obj/Debug/net9.0/Book-Management.csproj.AssemblyReference.cache
+/Users/khushalikavathiya/Projects/Book-Management/obj/Debug/net9.0/Book-Management.GeneratedMSBuildEditorConfig.editorconfig
+/Users/khushalikavathiya/Projects/Book-Management/obj/Debug/net9.0/Book-Management.AssemblyInfoInputs.cache
+/Users/khushalikavathiya/Projects/Book-Management/obj/Debug/net9.0/Book-Management.AssemblyInfo.cs
+/Users/khushalikavathiya/Projects/Book-Management/obj/Debug/net9.0/Book-Management.csproj.CoreCompileInputs.cache
+/Users/khushalikavathiya/Projects/Book-Management/obj/Debug/net9.0/Book-Management.sourcelink.json
