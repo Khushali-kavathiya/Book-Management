@@ -64,7 +64,47 @@ namespace BookManagement.Controllers
                 .Where(x => x.Title == name
                 && (string.IsNullOrEmpty(description) || x.Description == description)
                 ).ToListAsync();
-                return Ok(result);
+            return Ok(result);
+        }
+
+        // [HttpPost("all")]
+        // public async Task<IActionResult> GetIdsData([FromBody] List<int> ids)
+        // {
+        //     // var ids = new List<int> { 1, 2, 5 };
+        //     var result = await _appDbContext.Currencies
+        //         .Where(x => ids.Contains(x.Id))
+        //         .ToListAsync();
+        //     return Ok(result);
+        // }
+
+        // [HttpPost("all")]
+        // public async Task<IActionResult> GetIdsData([FromBody] List<int> ids)
+        // {
+        //     var result = await _appDbContext.Currencies
+        //         .Where(x => ids.Contains(x.Id))
+        //         .Select(x => new Currency   // using currency model to get perticular column data
+        //         {
+        //             Id = x.Id,
+        //             Title = x.Title,
+        //         }
+        //         )   // Get perticular column data from the database
+        //         .ToListAsync();
+        //     return Ok(result);
+        // }
+        
+        [HttpPost("all")]
+        public async Task<IActionResult> GetIdsData([FromBody] List<int> ids)
+        {
+            var result = await _appDbContext.Currencies
+                .Where(x => ids.Contains(x.Id))
+                .Select(x => new    // use anonymous type to get specific columns
+                {
+                    CurrencyId = x.Id,
+                    CurrencyTitle = x.Title,
+                }
+                )   // Get perticular column data from the database
+                .ToListAsync();
+            return Ok(result);
         }
 
     }
