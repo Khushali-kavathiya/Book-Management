@@ -32,6 +32,35 @@ namespace BookManagement.Controllers
             await _appDbContext.SaveChangesAsync();
 
             return Ok(books);
-        } 
-    }
+        }
+
+        [HttpPut("UpdateBook/{BookId}")]
+
+        public async Task<IActionResult> updateBook([FromRoute] int BookId, [FromBody] Book book)
+        {
+            var existingBook = await _appDbContext.Books.FirstOrDefaultAsync(x => x.Id == BookId);
+            if (existingBook == null)
+            {
+                return NotFound("Book not found");
+            }
+            existingBook.Title = book.Title;
+            existingBook.Description = book.Description;
+            existingBook.NoOfPages = book.NoOfPages;
+
+            await _appDbContext.SaveChangesAsync();
+
+            return Ok(existingBook);
+        }
+
+        [HttpPut("update")]
+
+        public async Task<IActionResult> update([FromBody] Book book)
+        {
+            // _appDbContext.Books.Update(book);
+            _appDbContext.Entry(book).State = EntityState.Modified;         
+            await _appDbContext.SaveChangesAsync();
+
+            return Ok(book);
+        }
+     }
 }
