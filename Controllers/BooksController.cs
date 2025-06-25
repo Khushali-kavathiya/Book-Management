@@ -42,27 +42,31 @@ namespace BookManagement.Controllers
             //                     .ToListAsync();
             // return Ok(books);
 
-            var book = await _appDbContext.Books.Where(x => x.Id == 6).FirstAsync();    // Explicit Loading
-            await _appDbContext.Entry(book).Reference(x => x.Author).LoadAsync();
+            // var book = await _appDbContext.Books.Where(x => x.Id == 6).FirstAsync();    // Explicit Loading
+            // await _appDbContext.Entry(book).Reference(x => x.Author).LoadAsync();
 
-            return Ok(book);                  
+            // return Ok(book);    
+
+            var book = await _appDbContext.Books.Where(x => x.Id == 6).FirstAsync();
+            var Author = book.Author;
+            return Ok(Author);              
         }
 
-        [HttpGet("Languages")]
+        // [HttpGet("Languages")]
 
-        public async Task<IActionResult> GetLanguages()
-        {
-            var Languages = await _appDbContext.Languages.ToListAsync();
-            foreach (var Language in Languages)
-            {
-                if (Language != null)
-                {
-                    await _appDbContext.Entry(Language).Collection(x => x.Books).LoadAsync();
-                }
-            }
+        // public async Task<IActionResult> GetLanguages()
+        // {
+        //     var Languages = await _appDbContext.Languages.ToListAsync();
+        //     foreach (var Language in Languages)
+        //     {
+        //         if (Language != null)
+        //         {
+        //             await _appDbContext.Entry(Language).Collection(x => x.Books).LoadAsync();
+        //         }
+        //     }
 
-            return Ok(Languages);
-        }
+        //     return Ok(Languages);
+        // }
         
 
         [HttpPost("AddBook")]
