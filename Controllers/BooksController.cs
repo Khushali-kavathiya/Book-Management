@@ -15,6 +15,34 @@ namespace BookManagement.Controllers
             _appDbContext = appDbContext;
         }
 
+        [HttpGet("GetBooks")]
+
+        public async Task<IActionResult> GetBook()
+        {
+            var books = await _appDbContext.Books.Select(x => new
+            {
+                id = x.Id,
+                BookTitle = x.Title,
+                Author = x.Author.name,
+                LanguageName = x.Language.Title
+            }
+            ).ToListAsync();
+
+            return Ok(books);
+        }
+
+        [HttpGet("Books")]
+
+        public async Task<IActionResult> GetBooks()
+        {
+            var books = await _appDbContext.Books
+                                .Include(x => x.Author)
+                                //.Include(x => x.Language)
+                               // .ThenInclude(x => x.AuthorCity)
+                                .ToListAsync();
+            return Ok(books);                    
+        }
+
         [HttpPost("AddBook")]
         public async Task<IActionResult> AddBook([FromBody] Book book)
         {
