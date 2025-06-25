@@ -75,8 +75,39 @@ namespace BookManagement.Controllers
 
             return Ok($"{c} records updated successfully");
         }
-        
-                
-    
-     }
+
+        [HttpDelete("DeleteBook/{BookId}")]
+        public async Task<IActionResult> DeleteBook([FromRoute] int BookId)
+        {
+            // var book = new Book { Id = BookId };
+            // _appDbContext.Entry(book).State = EntityState.Deleted;
+            // await _appDbContext.SaveChangesAsync();
+
+            // return Ok("Book deleted successfully");
+
+            try
+            {
+                var book = new Book { Id = BookId };
+                _appDbContext.Books.Remove(book);
+                await _appDbContext.SaveChangesAsync();
+                return Ok("Book deleted successfully");
+
+            }
+            catch (Exception)
+            {
+                return NotFound("Book not found");
+            }
+
+        }
+
+        [HttpDelete("Bulk")]
+        public async Task<IActionResult> BooksDelete()
+        {
+            var books = await _appDbContext.Books.Where(x => x.Id < 4).ExecuteDeleteAsync();
+            return Ok($"{books} Books Deleted successfully");
+        }
+
+    }
 }
+
+ 
