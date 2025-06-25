@@ -15,6 +15,60 @@ namespace BookManagement.Controllers
             _appDbContext = appDbContext;
         }
 
+        [HttpGet("GetBooks")]
+
+        public async Task<IActionResult> GetBook()
+        {
+            var books = await _appDbContext.Books.Select(x => new
+            {
+                id = x.Id,
+                BookTitle = x.Title,
+                Author = x.Author.name,
+              //  LanguageName = x.Language.Title
+            }
+            ).ToListAsync();
+
+            return Ok(books);
+        }
+
+        [HttpGet("Books")]
+
+        public async Task<IActionResult> GetBooks()
+        {
+            // var books = await _appDbContext.Books   // Eager loading
+            //                     .Include(x => x.Author)
+            //                     //.Include(x => x.Language)
+            //                    // .ThenInclude(x => x.AuthorCity)
+            //                     .ToListAsync();
+            // return Ok(books);
+
+            // var book = await _appDbContext.Books.Where(x => x.Id == 6).FirstAsync();    // Explicit Loading
+            // await _appDbContext.Entry(book).Reference(x => x.Author).LoadAsync();
+
+            // return Ok(book);    
+
+            var book = await _appDbContext.Books.Where(x => x.Id == 6).FirstAsync();
+            var Author = book.Author;
+            return Ok(Author);              
+        }
+
+        // [HttpGet("Languages")]
+
+        // public async Task<IActionResult> GetLanguages()
+        // {
+        //     var Languages = await _appDbContext.Languages.ToListAsync();
+        //     foreach (var Language in Languages)
+        //     {
+        //         if (Language != null)
+        //         {
+        //             await _appDbContext.Entry(Language).Collection(x => x.Books).LoadAsync();
+        //         }
+        //     }
+
+        //     return Ok(Languages);
+        // }
+        
+
         [HttpPost("AddBook")]
         public async Task<IActionResult> AddBook([FromBody] Book book)
         {
