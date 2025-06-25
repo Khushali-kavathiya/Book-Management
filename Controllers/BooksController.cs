@@ -57,10 +57,26 @@ namespace BookManagement.Controllers
         public async Task<IActionResult> update([FromBody] Book book)
         {
             // _appDbContext.Books.Update(book);
-            _appDbContext.Entry(book).State = EntityState.Modified;         
+            _appDbContext.Entry(book).State = EntityState.Modified;
             await _appDbContext.SaveChangesAsync();
 
             return Ok(book);
         }
+
+        [HttpPut("bulk")]
+
+        public async Task<IActionResult> BulkUpdate()
+        {
+            var c = await _appDbContext.Books
+                    .Where(x => x.NoOfPages > 300)
+                    .ExecuteUpdateAsync(x => x
+                        .SetProperty(b => b.Title, b => b.Title + "Added")
+                        .SetProperty(b => b.Description, b => b.Description + "Book"));
+
+            return Ok($"{c} records updated successfully");
+        }
+        
+                
+    
      }
 }
