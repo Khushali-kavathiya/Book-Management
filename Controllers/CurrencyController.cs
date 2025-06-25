@@ -21,7 +21,7 @@ namespace BookManagement.Controllers
             // var result = (from currencies in _appDbContext.Currencies
             //               select currencies).ToList();     // If you not write ToList() some time error will occur
 
-            var result = await _appDbContext.Currencies.ToListAsync();
+            var result = await _appDbContext.Currencies.AsNoTracking().ToListAsync();
             return Ok(result);
         }
 
